@@ -9,6 +9,7 @@ import yfinance as yf
 import pandas as pd
 import pickle
 from datetime import datetime
+import pytz
 
 # Load the trained model
 with open('model.pkl', 'rb') as f:
@@ -119,7 +120,9 @@ if st.button("Predict"):
                 msg = f"chances are low for {ticker}"
 
             ### adding to database the prediction details
-            now = datetime.now()
+            # Define IST timezone
+            ist = pytz.timezone('Asia/Kolkata')
+            now = datetime.now(ist)
             db.collection("prediction_logs").add({
                 "ticker": str(ticker),
                 "prediction": int(prediction),
