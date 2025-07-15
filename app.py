@@ -121,8 +121,8 @@ if st.button("Predict"):
             ### adding to database the prediction details
             now = datetime.now()
             db.collection("prediction_logs").add({
-                "ticker": ticker,
-                "prediction": prediction,
+                "ticker": str(ticker),
+                "prediction": int(prediction),
                 "date": now.strftime("%Y-%m-%d"),
                 "time": now.strftime("%H:%M:%S")
             })
