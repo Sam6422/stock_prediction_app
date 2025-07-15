@@ -101,7 +101,7 @@ ticker = st.text_input("Enter NSE Stock Ticker (e.g., DLF.NS):")
 
 if st.button("Predict"):
     
-    if ticker.empty:
+    if ticker == "":
         st.error("No ticker entered.")
     else:
         ticker_data = find_cases(ticker)
