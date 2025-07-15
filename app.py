@@ -119,6 +119,7 @@ if st.button("Predict"):
                 msg = f"chances are low for {ticker}"
 
             ### adding to database the prediction details
+            now = datetime.now()
             db.collection("prediction_logs").add({
                 "ticker": ticker,
                 "prediction": prediction,
