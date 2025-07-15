@@ -8,6 +8,7 @@ import streamlit as st
 import yfinance as yf
 import pandas as pd
 import pickle
+from datetime import datetime
 
 # Load the trained model
 with open('model.pkl', 'rb') as f:
