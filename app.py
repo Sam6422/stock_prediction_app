@@ -164,7 +164,7 @@ def find_price(ticker):
 # In[ ]:
 
 
-if st.button("Place Buy Order"):
+if st.button("Place Order"):
     if ticker_for_paper_trade == '' or password == '' or order == '' or quantity == '':
         st.error("Incorrect trade. Please re-enter correct details in an orderly manner.")
     else:
@@ -187,4 +187,48 @@ if st.button("Place Buy Order"):
                 "Price": int(last_price)
             })
             
-            st.success(f"📈 Trade placed for {ticker_for_paper_trade} at price of {last_price}")            
+            st.success(f"📈 Trade placed for {ticker_for_paper_trade} at price of {last_price}")
+
+
+#### fetching tradebook code
+def fetch_data(user_id):
+    if user_id:
+        # Query Firestore for trades with matching user_id
+        trades_ref = db.collection("paper_trading_data").where("password", "==", user_id)
+        results = trades_ref.stream()
+        
+        # Convert results to list of dicts
+        trades_list = [doc.to_dict() for doc in results]
+        
+        if trades_list:
+            # Convert list of dicts to DataFrame
+            df = pd.DataFrame(trades_list)
+    return df
+
+st.write("Use your password, to look at your trade book")
+# Input for user ID
+user_id = st.text_input("Enter User ID:")
+
+if st.button("Fetch Trades"):
+    if user_id:
+        try:
+            # Query Firestore for trades with matching user_id
+            trades_ref = db.collection("trades").where("user_id", "==", user_id)
+            results = trades_ref.stream()
+    
+            # Convert results to list of dicts
+            trades_list = [doc.to_dict() for doc in results]
+    
+            if trades_list:
+                # Convert list of dicts to DataFrame
+                df = pd.DataFrame(trades_list)
+    
+                st.success(f"Showing {len(df)} trades for User ID: {user_id}")
+                
+                # Display as interactive DataFrame
+                st.dataframe(df)
+    
+            else:
+                st.warning("No trades found for this ID.")
+        except:
+            st.warning("Invalid ID.")
