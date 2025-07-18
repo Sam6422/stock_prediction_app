@@ -210,25 +210,9 @@ st.title("Use your password, to look at your trade book")
 user_id = st.text_input("Enter User ID:")
 
 if st.button("Fetch Trades"):
-    if user_id:
-        try:
-            # Query Firestore for trades with matching user_id
-            trades_ref = db.collection("paper_trading_data").where("user_id", "==", user_id)
-            results = trades_ref.stream()
-    
-            # Convert results to list of dicts
-            trades_list = [doc.to_dict() for doc in results]
-    
-            if trades_list:
-                # Convert list of dicts to DataFrame
-                df = pd.DataFrame(trades_list)
-    
-                st.success(f"Showing {len(df)} trades for User ID: {user_id}")
-                
-                # Display as interactive DataFrame
-                st.dataframe(df)
-    
-            else:
-                st.warning("No trades found for this ID.")
-        except:
-            st.warning("Invalid ID.")
+    try:
+        if user_id:
+            tradebook = fetch_data(user_id)
+            st.dataframe(tradebook)
+    except:
+        st.warning("Please enter valid id")
