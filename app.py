@@ -137,7 +137,7 @@ if st.button("Predict"):
 # In[ ]:
 
 
-st.write("Paper-Trading Arena : Enter your paper-trade below")
+st.title("Paper-Trading Arena : Enter your paper-trade below")
 st.write("No Login, No Signup!!!! Only a single password used to place/access your trades")
 
 ticker_for_paper_trade = st.text_input("Enter Ticker for Paper-Trade (e.g., DLF.NS):")
@@ -205,7 +205,7 @@ def fetch_data(user_id):
             df = pd.DataFrame(trades_list)
     return df
 
-st.write("Use your password, to look at your trade book")
+st.title("Use your password, to look at your trade book")
 # Input for user ID
 user_id = st.text_input("Enter User ID:")
 
