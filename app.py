@@ -188,16 +188,3 @@ if st.button("Place Buy Order"):
             })
             
             st.success(f"📈 Trade placed for {ticker_for_paper_trade} at price of {last_price}")            
-
-
-# In[3]:
-
-
-# !jupyter nbconvert --to script app.ipynb
-
-
-# In[ ]:
-
-
-
-
