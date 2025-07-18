@@ -156,7 +156,7 @@ st.write("Please Note: Price will be either the current market price or the last
 def find_price(ticker):
     try:
         data = yf.download(ticker, period='1y', interval='1d')
-        return data['Close'][-1]
+        return round(data.iloc[-1,0],1)
     except:
         return "na"
 
