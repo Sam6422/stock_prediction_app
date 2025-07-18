@@ -138,11 +138,11 @@ if st.button("Predict"):
 
 
 st.title("Paper-Trading Arena : Enter your paper-trade below")
-st.write("No Login, No Signup!!!! Only a single password used to place/access your trades")
+st.write("No Login, No Signup!!!! Only a single ID used to place/access your trades")
 
 ticker_for_paper_trade = st.text_input("Enter Ticker for Paper-Trade (e.g., DLF.NS):")
 password = st.text_input("Enter your unique identification code (please note if this exists in our db, it will be matched to that trade, \
-else new id will be created:")
+else new id will be created):")
 order_options = ['Buy', 'Sell']
 order = st.selectbox("Enter Order Type (buy/sell):", order_options)
 quantity_options = [1, 10, 100, 500, 1000, 2000, 5000, 10000]
@@ -205,7 +205,7 @@ def fetch_data(user_id):
             df = pd.DataFrame(trades_list)
     return df
 
-st.title("Use your password, to look at your trade book")
+st.title("Use your User-ID, to look at your Trade-Book")
 # Input for user ID
 user_id = st.text_input("Enter User ID:")
 
