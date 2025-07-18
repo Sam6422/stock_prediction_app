@@ -213,7 +213,7 @@ if st.button("Fetch Trades"):
     if user_id:
         try:
             # Query Firestore for trades with matching user_id
-            trades_ref = db.collection("trades").where("user_id", "==", user_id)
+            trades_ref = db.collection("paper_trading_data").where("user_id", "==", user_id)
             results = trades_ref.stream()
     
             # Convert results to list of dicts
